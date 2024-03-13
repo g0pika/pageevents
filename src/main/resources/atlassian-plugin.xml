@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2"> 
+  <plugin-info> 
+    <description>${project.description}</description>  
+    <version>${project.version}</version>  
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>  
+    <param name="plugin-icon">images/pluginIcon.png</param>  
+    <param name="plugin-logo">images/pluginLogo.png</param> 
+  </plugin-info>  
+  <!-- add our i18n resource -->  
+  <!-- add our web resources --> 
+  <web-resource key="soy-templates">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>  
+    <resource type="soy" name="soyui" location="templates/pageviews.soy"/> 
+    <transformation extension="soy">
+            <transformer key="soyTransformer"/>
+    </transformation>
+     <context>confluence</context> 
+</web-resource>
+
+  <ao key="ao-module">
+    <description>The module configuring the Active Objects service used by this plugin</description>
+    <entity>com.view26.settings.ao.Action</entity>
+    <entity>com.view26.summaries.ao.Summary</entity>
+  </ao>
+  
+
+  <web-resource key="pageevents-resources" name="pageevents Web Resources"> 
+    <dependency>com.atlassian.auiplugin:ajs</dependency>  
+    <dependency>com.atlassian.auiplugin:ajs</dependency>  
+    <resource type="download" name="pageevents.css" location="/css/pageevents.css"/>  
+    <resource type="download" name="pageevents.js" location="/js/pageevents.js"/>  
+    <resource type="download" name="images/" location="/images"/>  
+    <context>confluence</context> 
+  </web-resource>  
+  <resource type="i18n" name="i18n" location="com.view26.pageevents"/>
+  <servlet name="My Servlet" i18n-name-key="my-servlet.name" key="my-servlet" class="com.view26.servlet.MyServlet"> 
+    <description key="my-servlet.description">The My Servlet Plugin</description>  
+    <url-pattern>/myservlet</url-pattern> 
+  </servlet>
+</atlassian-plugin>
